@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap';
+import axios from 'axios';
 
 export default class Create extends Component {
     constructor(props) {
@@ -32,8 +33,13 @@ export default class Create extends Component {
     onSubmit(e) {
         e.preventDefault()
 
-        console.log(`Successfully created!!`);
-        console.log(`Name: ${this.state.name}`);
+        const studentObject = {
+            name: this.state.name,
+            email: this.state.email,
+            rollno: this.state.rollno
+        }
+        axios.post('http://localhost:4000/student', studentObject)
+            .then(res => console.log(res.data));
 
         this.setState({name: '', email: '', rollno: ''})
     }
