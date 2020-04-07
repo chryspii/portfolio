@@ -46,7 +46,7 @@ module.exports = {
         saveStudent({ name, email, rollno });
 
         function saveStudent(obj) {
-            Student.findOneAndUpdate(req.params.id, { $set: obj }, (err, student) => {
+            Student.findByIdAndUpdate(req.params.id, { $set: obj }, { useFindAndModify: false }, (err, student) => {
                 if(err)
                     res.send(err)
                 else if(!student)
@@ -58,7 +58,7 @@ module.exports = {
         }
     },
     deleteStudent: (req, res, next) => {
-        Student.findOneAndDelete(req.params.id, (err, student) => {
+        Student.findByIdAndRemove(req.params.id, { useFindAndModify: false }, (err, student) => {
             if(err)
                 res.send(err)
             else if(!student)

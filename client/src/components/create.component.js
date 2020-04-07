@@ -39,14 +39,19 @@ export default class Create extends Component {
             rollno: this.state.rollno
         }
         axios.post('http://localhost:4000/student', studentObject)
-            .then(res => console.log(res.data));
+            .then((res) => {
+                console.log(res.data)
+                console.log('Created Succesfully')
+            }).catch((error) => {
+                console.log(error)
+            })
 
         this.setState({name: '', email: '', rollno: ''})
     }
 
     render() {
         return (
-            <div class="form-wrapper">
+            <div className="form-wrapper">
                 <Form onSubmit={this.onSubmit}>
                     <Form.Group controlId="Name">
                         <Form.Label>Name</Form.Label>
