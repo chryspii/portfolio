@@ -1,61 +1,65 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import logo from './logo.svg';
-import { Nav, Navbar, Container, Row, Col } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "./store";
+import jwt_decode from "jwt-decode";
+import setAuthToken from "./utils/setAuthToken";
+import { setCurrentUser, logoutUser } from "./actions/authActions";
 
-import List from './components/list.component';
-import Edit from './components/edit.component';
-import Create from './components/create.component';
+import LoginPage from "./containers/auth/LoginPage";
+import SignUpPage from "./containers/auth/SignUpPage";
 
-function App() {
-  return (
-    <Router>
-      <div className='App'>
-        <header className='App-header'>
-          <Navbar bg='dark' variant='dark'>
-            <Container fluid>
+import ProgressBar from "./containers/layout/ProgressBar";
+import Navbar from "./containers/layout/Navbar";
+import Landing from "./components/layout/Landing";
+import BlogPage from "./containers/BlogPage";
+import PrivateRoute from "./utils/PrivateRoute";
 
-              <Navbar.Brand>
-                <Link to={'/'} className='nav-link'>
-                  <img src={logo} height='30' weight='30' className="d-inline-block align-top" alt="" /> Coba
-                </Link>
-              </Navbar.Brand>
+import ViewPostPage from "./containers/posts/ViewPostPage";
+import CreatePostPage from "./containers/posts/CreatePostPage";
+import UpdatePostPage from "./containers/posts/UpdatePostPage";
 
-              <Nav className="justify-content-end">
-                <Nav>
-                  <Link to={"/create"} className="nav-link">
-                    Create
-                  </Link>
-                </Nav>
-                <Nav>
-                  <Link to={"/list"} className="nav-link">
-                    List
-                  </Link>
-                </Nav>
-              </Nav>
+if (localStorage.jwtToken) {
+  const token = localStorage.jwtToken;
+  setAuthToken(token);
+  const decoded = jwt_decode(token);
+  store.dispatch(setCurrentUser(decoded));
+  const currentTime = Date.now() / 1000;
 
-            </Container>
-          </Navbar>
-        </header>
-
-        <Container>
-          <Row>
-            <Col md={12}>
-              <div className="wrapper">
-                <Switch>
-                  <Route exact path='/' component={Create} />
-                  <Route path="/create" component={Create} />
-                  <Route path="/edit/:id" component={Edit} />
-                  <Route path="/list" component={List} />
-                </Switch>
-              </div>
-            </Col>
-          </Row>
-        </Container>
-      </div>
-    </Router>
-  );
+  if (decoded.exp < currentTime) {
+    store.dispatch(logoutUser());
+    window.location.href = "./loginPage";
+  }
 }
+
+const App = () => {
+  return (
+    <Provider store={store}>
+      <BrowserRouter>
+        <ProgressBar />
+        <Navbar />
+        <Switch>
+          <Route path="/" exact component={Landing} />
+          <Route path="/login" component={LoginPage} />
+          <Route path="/signup" component={SignUpPage} />
+          <PrivateRoute exact path="/blog" component={BlogPage} />
+          <PrivateRoute
+            exact
+            path="/blog/post/create"
+            component={CreatePostPage}
+          />
+          <PrivateRoute
+            exact
+            path="/blog/post/update/:id"
+            component={UpdatePostPage}
+          />
+          <Route exact path="/blog/post/:id" component={ViewPostPage} />
+          <Route path="/blog/:author" component={BlogPage} />
+          <Redirect from="*" to="/" />
+        </Switch>
+      </BrowserRouter>
+    </Provider>
+  );
+};
 
 export default App;
