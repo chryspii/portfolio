@@ -1,30 +1,34 @@
 const mongoose = require('mongoose');
 const db = require('./db_connection.js');
 
-let UserSchema = new mongoose.Schema({
-    user_name: {
+let PostSchema = new mongoose.Schema({
+    title: {
         type: String,
         required: true
     }, 
-    email: {
+    body: {
         type: String,
         required: true
     },
-    password: {
+    author: {
         type: String,
         required: true
+    },
+    date: {
+        type: Date,
+        default: Date.now
     }
 },
 {
     timestamps: true,
-    collection: 'users'
+    collection: 'posts'
 });
 
-UserSchema.method('toJSON', function() {
+PostSchema.method('toJSON', function() {
     const { __v, _id, ...object } = this.toObject();
     object._id = _id;
 
     return object;
 })
 
-module.exports = db.resumeDB.model('users', UserSchema)
+module.exports = db.resumeDB.model('posts', PostSchema)
