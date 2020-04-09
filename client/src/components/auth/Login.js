@@ -19,11 +19,18 @@ const Login = ({ message, loading, user, onChange, onBlur, onSubmit }) => {
             <Row>
                 <Col className="mx-auto" sm={11} md={7} lg={5}>
                     <Card className="my-4">
-                        <Form noValidate onSubmit={onSubmit} className="p-sm-3 p-xs-1">
-                            <Card.body>
+                        <Form
+                            noValidate
+                            onSubmit={onSubmit}
+                            className="p-sm-3 p-xs-1"
+                        >
+                            <Card.Body>
                                 <Card.Title as='h3' className='text-center theme-color mb-4 mt-2'>
                                     Login
                                 </Card.Title>
+                                {
+                                    message.length > 0 && (<Alert variant="success">{message}</Alert>)
+                                }
                                 <Input
                                     name="email"
                                     type="email"
@@ -63,14 +70,14 @@ const Login = ({ message, loading, user, onChange, onBlur, onSubmit }) => {
                                     Don't have an account?{" "}
                                     <Link to={"/signup"}>SignUp</Link>
                                 </Card.Text>
-                            </Card.body>
+                            </Card.Body>
                         </Form>
                     </Card>
                 </Col>
             </Row>
         </Container>
-    )
-}
+    );
+};
 
 Login.propTypes = {
     onSubmit: PropTypes.func.isRequired,
@@ -79,6 +86,6 @@ Login.propTypes = {
     user: PropTypes.object.isRequired,
     message: PropTypes.string.isRequired,
     loading: PropTypes.bool.isRequired
- };
- 
- export default Login;
+};
+
+export default Login;

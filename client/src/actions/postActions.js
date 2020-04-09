@@ -1,14 +1,5 @@
 import axios from "axios";
-import {
-    CREATE_POST,
-    GET_POST,
-    GET_POSTS,
-    UPDATE_POST,
-    DELETE_POST,
-    TOGGLE_POSTS_LOADING,
-    TOGGLE_POST_LOADING,
-    RESET_POST
-} from "./types";
+import { CREATE_POST, GET_POST, GET_POSTS, UPDATE_POST, DELETE_POST, TOGGLE_POSTS_LOADING, TOGGLE_POST_LOADING, RESET_POST } from "./types";
 import { setErrors, clearErrors } from "./errorActions";
 
 export const createPost = (postData, history) => dispatch => {
@@ -85,7 +76,7 @@ export const getPosts = () => dispatch => {
 export const updatePost = (id, postData, history) => dispatch => {
     dispatch(togglePostLoading());
     axios
-        .patch(`/api/posts/update/${id}`, postData)
+        .put(`/api/posts/update/${id}`, postData)
         .then(res => {
             dispatch({
                 type: UPDATE_POST,

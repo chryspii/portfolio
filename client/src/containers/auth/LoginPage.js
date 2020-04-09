@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import Logins from "../../components/auth/Login";
+import Login from "../../components/auth/Login";
 import Validate from "../../components/form/Validate";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
@@ -54,7 +54,7 @@ const LoginPage = ({ loginUser, auth, errors, history, clearErrors }) => {
     };
 
     return (
-        <Logins
+        <Login
             message={message}
             loading={auth.userLoading}
             user={{ ...user }}
