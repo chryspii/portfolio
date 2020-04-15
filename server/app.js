@@ -14,6 +14,9 @@ const passport = require('passport');
 const indexRouter = require('./routes/index');
 const userRouter = require('./routes/users');
 const postRouter = require('./routes/posts');
+const educationRouter = require('./routes/educations');
+const workRouter = require('./routes/works');
+const skillRouter = require('./routes/skills');
 
 const app = express();
 
@@ -48,5 +51,8 @@ mongoose.Promise = global.Promise;
 app.use('/', indexRouter);
 app.use('/api/users/', userRouter);
 app.use('/api/posts/', postRouter);
+app.use('/api/educations/', educationRouter);
+app.use('/api/works/', workRouter);
+app.use('/api/skills/', skillRouter);
 
 module.exports = app;
