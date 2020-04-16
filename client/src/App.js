@@ -19,6 +19,9 @@ import ViewPostPage from "./containers/posts/ViewPostPage";
 import CreatePostPage from "./containers/posts/CreatePostPage";
 import UpdatePostPage from "./containers/posts/UpdatePostPage";
 
+import Header from "./components/layout/Header";
+import Body from "./components/layout/Body";
+
 if (localStorage.jwtToken) {
   const token = localStorage.jwtToken;
   setAuthToken(token);
@@ -36,10 +39,12 @@ const App = () => {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <ProgressBar />
-        <Navbar />
-        <Switch>
-          <Route path="/" exact component={Landing} />
+        <div id="vs-container" className="container-xl">
+          <Header />
+          <Body />
+        </div>
+        {/* <Switch>
+          <Route path="/" exact component={Header} />
           <Route path="/login" component={LoginPage} />
           <Route path="/signup" component={SignUpPage} />
           <PrivateRoute exact path="/blog" component={BlogPage} />
@@ -56,7 +61,7 @@ const App = () => {
           <Route exact path="/blog/post/:id" component={ViewPostPage} />
           <Route path="/blog/:author" component={BlogPage} />
           <Redirect from="*" to="/" />
-        </Switch>
+        </Switch> */}
       </BrowserRouter>
     </Provider>
   );
