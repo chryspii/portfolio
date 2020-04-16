@@ -17,6 +17,8 @@ const postRouter = require('./routes/posts');
 const educationRouter = require('./routes/educations');
 const workRouter = require('./routes/works');
 const skillRouter = require('./routes/skills');
+const aboutRouter = require('./routes/abouts');
+const portfolioRouter = require('./routes/portfolios');
 
 const app = express();
 
@@ -54,5 +56,7 @@ app.use('/api/posts/', postRouter);
 app.use('/api/educations/', educationRouter);
 app.use('/api/works/', workRouter);
 app.use('/api/skills/', skillRouter);
+app.use('/api/abouts/', aboutRouter);
+app.use('/api/portfolios/', portfolioRouter);
 
 module.exports = app;
