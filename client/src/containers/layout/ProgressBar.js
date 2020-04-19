@@ -11,7 +11,8 @@ const mapStateToProps = state => ({
     loading:
         state.auth.userLoading ||
         state.post.postLoading ||
-        state.post.postsLoading
+        state.post.postsLoading ||
+        state.about.aboutLoading
 });
 
 ProgressBar.propTypes = {
