@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const ejs = require('ejs');
 
 require('dotenv').config();
 const mongoose = require('mongoose');
@@ -10,8 +11,8 @@ const bodyParser = require('body-parser');
 const helmet = require('helmet');
 
 const passport = require('passport');
+const compression = require('compression');
 
-const indexRouter = require('./routes/index');
 const userRouter = require('./routes/users');
 const postRouter = require('./routes/posts');
 const educationRouter = require('./routes/educations');
@@ -22,17 +23,29 @@ const portfolioRouter = require('./routes/portfolios');
 
 const app = express();
 
+// enable ejs templates to have .html extension
+app.engine('html', ejs.renderFile);
+app.set('view engine', 'html');
+
+// enable gzip compression
+app.use(compression());
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(helmet());
 app.use(passport.initialize());
 require('./middleware/passport')(passport);
+
+app.use(express.static("client/build"));
+app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+});
+
 
 // database connection
 const MONGO_URI = process.env.MONGO_URI;
@@ -50,7 +63,6 @@ mongoose.connect(MONGO_URI, options).then(() => {
 });
 mongoose.Promise = global.Promise;
 
-app.use('/', indexRouter);
 app.use('/api/users/', userRouter);
 app.use('/api/posts/', postRouter);
 app.use('/api/educations/', educationRouter);
