@@ -16,6 +16,9 @@ let AboutSchema = new mongoose.Schema({
     },
     title: {
         type: String
+    },
+    icon: {
+        type: String
     }
 },
 {

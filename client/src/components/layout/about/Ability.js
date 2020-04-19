@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
 import { 
     Row,
     Col
@@ -15,12 +14,11 @@ const Ability = ({ skills }) => {
 
     return (
         <Row>
-            <p></p>
             {
                 skills.map((skill, i) => (
                     <Col md={4} sm={4} key={i}>
                         <div className={"service color" + random()}>
-                            <i className="fas fa-laptop-code"></i>
+                            <i className={skill.icon}></i>
                             <h4>{skill.title}</h4>
                             <p>{skill.text}</p>
                         </div>

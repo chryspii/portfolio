@@ -5,14 +5,16 @@ import { Link } from "react-router-dom";
 import { 
     Image,
     Row,
-    Col,
-    Table
+    Col
 } from "react-bootstrap";
 
 import Intro from "./about/Intro";
 import Ability from "./about/Ability";
+import Work from "./skill/Work";
+import Education from "./skill/Education";
+import Skill from "./skill/Skill";
 
-const Home = ({ aboutDesc, aboutButtons, aboutSkills, aboutTypes }) => {
+const Home = ({ aboutDesc, aboutButtons, aboutSkills, aboutTypes, skill, education, work }) => {
     
     const [display, setDisplay] = useState(false);
     useEffect(() => {
@@ -64,30 +66,7 @@ const Home = ({ aboutDesc, aboutButtons, aboutSkills, aboutTypes }) => {
                 <div className="vs-content content">
                     <h2 className="section-title center"><span><i className="icon-leaf"></i>MY WORKS</span></h2>
 
-                    <div className="portfolio-items media-grid" data-layout="masonry">
-                        <article className="media-cell coding hentry">
-                            <div className="media-box">
-                                <Image src="images/portfolio/no-image-1.png" alt="post-image" />
-                                <div className="mask"></div>
-                                <Link to="#" data-toggle="modal" data-target="#exampleModal"></Link>
-                            </div>
-                            <header className="media-cell-desc">
-                                <span title="2013" className="date"><span className="day">18</span>oct</span>
-                                <h3>20 Best Practices For Designing Better UIs</h3>
-                            </header>
-                        </article>
-                        <article className="media-cell coding hentry">
-                            <div className="media-box">
-                                <Image src="images/portfolio/no-image-2.png" alt="post-image" />
-                                <div className="mask"></div>
-                                <Link to="#" data-toggle="modal" data-target="#exampleModal"></Link>
-                            </div>
-                            <header className="media-cell-desc">
-                                <span title="2013" className="date"><span className="day">18</span>oct</span>
-                                <h3>20 Best Practices For Designing Better UIs</h3>
-                            </header>
-                        </article>
-                    </div>
+                    <h2 className="text-secondary text-center">No portfolio Found</h2>
                 </div>
             </section>
 
@@ -118,7 +97,7 @@ const Home = ({ aboutDesc, aboutButtons, aboutSkills, aboutTypes }) => {
                     </Row>
                     <Row>
                         <Col md={12}>
-                            <h2 className="section-title"><span><i className="icon-paper-plane"></i>LEAVE A MESSAGE</span></h2>
+                            <h2 className="section-title"><span><i className="icon-paper-plane"></i>LEAVE A MESSAGE (UNDER MAINTENANCE)</span></h2>
                             <div className="contact-form">
                                 <form id="contact-form" method="post">
                                     <input type="hidden" name="subject" id="subject" value="You have a new message from cvCard!" />
@@ -135,7 +114,7 @@ const Home = ({ aboutDesc, aboutButtons, aboutSkills, aboutTypes }) => {
                                         <textarea name="message" id="message" className="required"></textarea>
                                     </p>
                                     <p>
-                                        <input type="submit" className="submit button primary" value="SEND" />
+                                        <button type="submit" className="submit button primary" disabled>SEND</button>
                                     </p>
                                 </form>
                             </div>
@@ -148,279 +127,10 @@ const Home = ({ aboutDesc, aboutButtons, aboutSkills, aboutTypes }) => {
                 <div className="vs-content content">
                     <Row>
                         <Col md={7}>
-                            <div className="timeline">
-                                <h2><i className="fa fa-flask"></i>WORK EXPERIENCES</h2>
-                                <div className="event">
-                                    <span className="date">2016</span>
-                                    <h4>IT Staff</h4>
-                                    <h5>CV. Karya Hidup Sentosa | Indonesia</h5>
-                                    <p>I worked as an IT Staff at CV. KHS for 1 year and 2 months. My job is to Innovate and develop web-based applications to help and accelerate the company's business processes. Using PHP as Server-side programming language and Code Igniter (CI) as the framework. The Database used is PostgreSQL and Oracle DB. Combine the current web application with Oracle ERP to easily help the custom process needed.</p>
-                                </div>
-                                <div className="event">
-                                    <span className="date">2015</span>
-                                    <h4>Internship</h4>
-                                    <h5>PT. Pertamina (Persero) |  Indonesia</h5>
-                                    <p>I worked as an Internship at PT. Pertamina for 3 months. My job is to Develop web-based applications to help organizing the company’s document management. Using ASP.NET as a programming language. The Database used is Microsoft SQL Server.</p>
-                                </div>
-                            </div>
-                            <div className="timeline">
-                                <h2><i className="icon-college"></i>EDUCATIONS</h2>
-                                <div className="event">
-                                    <span className="date">2018</span>
-                                    <h4>Industrial Management</h4>
-                                    <h5>National Taiwan University of Science and Technology | Taiwan</h5>
-                                    <Table className="table-borderless text-left" style={{ margin: ".6em 0 .2em 0" }}>
-                                        <tbody>
-                                            <tr>
-                                                <td>Period</td>
-                                                <td>:</td>
-                                                <td>2018 - 2020</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Degree</td>
-                                                <td>:</td>
-                                                <td>Master</td>
-                                            </tr>
-                                            <tr>
-                                                <td>GPA</td>
-                                                <td>:</td>
-                                                <td>3.84 out of 4.30</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Research</td>
-                                                <td>:</td>
-                                                <td>Blockchain and Distributed File System</td>
-                                            </tr>
-                                        </tbody>
-                                    </Table>
-                                    <p className="m-0"></p>
-                                </div>
-                                <div className="event">
-                                    <span className="date">2012</span>
-                                    <h4>Computer Science</h4>
-                                    <h5>Institut Teknologi Sepuluh Nopember | Indonesia</h5>
-                                    <Table className="table-borderless text-left" style={{ margin: ".6em 0 .2em 0" }}>
-                                        <tbody>
-                                            <tr>
-                                                <td>Period</td>
-                                                <td>:</td>
-                                                <td>2012 - 2016</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Degree</td>
-                                                <td>:</td>
-                                                <td>Bachelor</td>
-                                            </tr>
-                                            <tr>
-                                                <td>GPA</td>
-                                                <td>:</td>
-                                                <td>3.54 out of 4.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Research</td>
-                                                <td>:</td>
-                                                <td>Enterprize Resource Planning Application</td>
-                                            </tr>
-                                            </tbody>
-                                    </Table>
-                                    <p className="m-0"></p>
-                                </div>
-                            </div>
+                            <Work works={work} />
+                            <Education educations={education} />
                         </Col> 
-                        <Col md={5}>
-                            <h2 className="section-title"><span><i className="icon-cog-1"></i>DEVELOPMENT SKILLS</span></h2>
-                            <div className="skillset">
-                                <h4><b>Web Application</b></h4>
-                                <div className="skill-unit">
-                                    <h4>HTML5, CSS3</h4>
-                                    <div className="bar" data-percent="100">
-                                        <div className="progress"></div>
-                                    </div>
-                                </div>
-                                <div className="skill-unit">
-                                    <h4>Javascript (ES5, ES6)</h4>
-                                    <div className="bar" data-percent="100">
-                                        <div className="progress"></div>
-                                    </div>
-                                </div>
-                                <div className="skill-unit">
-                                    <h4>ReactJS</h4>
-                                    <div className="bar" data-percent="45">
-                                        <div className="progress"></div>
-                                    </div>
-                                </div>
-                                <div className="skill-unit">
-                                    <h4>jQuery, Ajax</h4>
-                                    <div className="bar" data-percent="85">
-                                        <div className="progress"></div>
-                                    </div>
-                                </div>
-                                <div className="skill-unit">
-                                    <h4>JSON</h4>
-                                    <div className="bar" data-percent="90">
-                                        <div className="progress"></div>
-                                    </div>
-                                </div>
-                                <div className="skill-unit">
-                                    <h4>NodeJS (Express)</h4>
-                                    <div className="bar" data-percent="100">
-                                        <div className="progress"></div>
-                                    </div>
-                                </div>
-                                <div className="skill-unit">
-                                    <h4>PHP (CI, Yii)</h4>
-                                    <div className="bar" data-percent="95">
-                                        <div className="progress"></div>
-                                    </div>
-                                </div>
-                                <div className="skill-unit">
-                                    <h4>SQL (MySQL, PostgreSQL, Oracle)</h4>
-                                    <div className="bar" data-percent="85">
-                                        <div className="progress"></div>
-                                    </div>
-                                </div>
-                                <div className="skill-unit">
-                                    <h4>NoSQL (MongoDB)</h4>
-                                    <div className="bar" data-percent="80">
-                                        <div className="progress"></div>
-                                    </div>
-                                </div>
-                                <div className="skill-unit">
-                                    <h4>XAMPP/LAMPP</h4>
-                                    <div className="bar" data-percent="90">
-                                        <div className="progress"></div>
-                                    </div>
-                                </div>
-                                <div className="skill-unit">
-                                    <h4>Google Cloud Platform</h4>
-                                    <div className="bar" data-percent="70">
-                                        <div className="progress"></div>
-                                    </div>
-                                </div>
-                                <div className="skill-unit">
-                                    <h4>Amazon Web Service (S3)</h4>
-                                    <div className="bar" data-percent="70">
-                                        <div className="progress"></div>
-                                    </div>
-                                </div>
-                                <div className="skill-unit">
-                                    <h4>Blockchain</h4>
-                                    <div className="bar" data-percent="40">
-                                        <div className="progress"></div>
-                                    </div>
-                                </div>
-                                <h4><b>Mobile Application</b></h4>
-                                <div className="skill-unit">
-                                    <h4>Android (Java)</h4>
-                                    <div className="bar" data-percent="35">
-                                        <div className="progress"></div>
-                                    </div>
-                                </div>
-                                <div className="skill-unit">
-                                    <h4>iOS</h4>
-                                    <div className="bar" data-percent="40">
-                                        <div className="progress"></div>
-                                    </div>
-                                </div>
-                                <h4><b>Other</b></h4>
-                                <div className="skill-unit">
-                                    <h4>Python</h4>
-                                    <div className="bar" data-percent="80">
-                                        <div className="progress"></div>
-                                    </div>
-                                </div>
-                                <div className="skill-unit">
-                                    <h4>Git</h4>
-                                    <div className="bar" data-percent="90">
-                                        <div className="progress"></div>
-                                    </div>
-                                </div>
-                                <div className="skill-unit">
-                                    <h4>Elasticsearch, Logstash, Kibana (ELK)</h4>
-                                    <div className="bar" data-percent="75">
-                                        <div className="progress"></div>
-                                    </div>
-                                </div>
-                                <div className="skill-unit">
-                                    <h4>Docker</h4>
-                                    <div className="bar" data-percent="40">
-                                        <div className="progress"></div>
-                                    </div>
-                                </div>
-                                <div className="skill-unit">
-                                    <h4>Machine Learning</h4>
-                                    <div className="bar" data-percent="70">
-                                        <div className="progress"></div>
-                                    </div>
-                                </div>
-                                <div className="skill-unit">
-                                    <h4>Deep Learning</h4>
-                                    <div className="bar" data-percent="60">
-                                        <div className="progress"></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <h2 className="section-title"><span><i className="icon-brush"></i>DESIGN SKILLS</span></h2>
-                            <div className="skillset">
-                                <div className="skill-unit">
-                                    <h4>Adobe Photoshop</h4>
-                                    <div className="bar" data-percent="90">
-                                        <div className="progress"></div>
-                                    </div>
-                                </div>
-                                <div className="skill-unit">
-                                    <h4>Adobe Illustrator</h4>
-                                    <div className="bar" data-percent="75">
-                                        <div className="progress"></div>
-                                    </div>
-                                </div>
-                                <div className="skill-unit">
-                                    <h4>Corel Draw</h4>
-                                    <div className="bar" data-percent="85">
-                                        <div className="progress"></div>
-                                    </div>
-                                </div>
-                                <div className="skill-unit">
-                                    <h4>Camtasia</h4>
-                                    <div className="bar" data-percent="85">
-                                        <div className="progress"></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <h2 className="section-title"><span><i className="icon-child"></i>PERSONAL SKILLS</span></h2>
-                            <div className="skillset">
-                                <div className="skill-unit">
-                                    <h4>Self Management</h4>
-                                    <div className="bar" data-percent="90">
-                                        <div className="progress"></div>
-                                    </div>
-                                </div>
-                                <div className="skill-unit">
-                                    <h4>Public Speech</h4>
-                                    <div className="bar" data-percent="85">
-                                        <div className="progress"></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <h2 className="section-title"><span><i className="icon-globe"></i>LANGUAGE</span></h2>
-                            <div className="skillset">
-                                <div className="skill-unit">
-                                    <h4>Bahasa</h4>
-                                    <div className="bar" data-percent="100">
-                                        <div className="progress"></div>
-                                    </div>
-                                </div>
-                                <div className="skill-unit">
-                                    <h4>English</h4>
-                                    <div className="bar" data-percent="85">
-                                        <div className="progress"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </Col>
+                        <Skill skills={skill} />
                     </Row>                   
                 </div>
             </section>
@@ -433,7 +143,10 @@ Home.propTypes = {
     aboutButtons: PropTypes.array.isRequired,
     aboutDesc: PropTypes.array.isRequired,
     aboutSkills: PropTypes.array.isRequired,
-    aboutSkills: PropTypes.array.isRequired,
+    aboutTypes: PropTypes.array.isRequired,
+    skill: PropTypes.array.isRequired,
+    education: PropTypes.array.isRequired,
+    work: PropTypes.array.isRequired,
 };
 
 export default Home;

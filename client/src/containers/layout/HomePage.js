@@ -30,7 +30,8 @@ const AboutPage = ({ about, getAbout, skill, getSkill, work, getWork, education,
         else if(element.type === "skill")
             aboutSkills.push({
                 title: element.title,
-                text: element.text
+                text: element.text,
+                icon: element.icon
             })
         else if(element.type === "typewritter") {
             let values = element.text.split(",");
@@ -44,7 +45,10 @@ const AboutPage = ({ about, getAbout, skill, getSkill, work, getWork, education,
         aboutDesc={aboutDesc}
         aboutButtons={aboutButtons}
         aboutSkills={aboutSkills}
-        aboutTypes={aboutTypes} 
+        aboutTypes={aboutTypes}
+        skill={skill}
+        education={education}
+        work={work}
     />
 }
 

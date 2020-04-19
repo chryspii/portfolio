@@ -6,8 +6,11 @@ var $container, $blog_container;
 	NProgress.start();
 	$(function() {
 		setMasonry();
-		fillBars();
 	});
+	
+	window.onload = function() {
+		NProgress.done();
+	};
 
 	var inAnimation, outAnimation;
 	function initialize() {
@@ -75,12 +78,5 @@ var $container, $blog_container;
 				}
 			});
 		}
-	}	
-
-	function fillBars() {
-		$('.bar').each(function() {
-			 var bar = $(this);
-			 bar.find('.progress').css('width', bar.attr('data-percent') + '%' );
-			});
-	}	
+	}
 })(jQuery);
